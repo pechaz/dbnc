@@ -97,7 +97,7 @@ html {
 
             .contentContainer {
 
-              h2 {
+              h1, h2 {
                 font-weight: bolder;
 
                 @include media(mobile) {

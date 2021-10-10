@@ -1,13 +1,16 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {searchCity} from "../redux/actions/mainAction";
 import {Link} from "react-router-dom";
+
+import {clear, searchCity} from "../redux/actions/mainAction";
 import {URLS} from "../util/constants";
 
 class Question5 extends React.Component {
 
     componentDidMount() {
-        this.props.searchCity('a');
+        if(!this.props.response){
+            this.props.searchCity('a');
+        }
     }
 
     search = (cityName) => {
@@ -20,7 +23,7 @@ class Question5 extends React.Component {
         }
 
         return this.props.response.map((item, index) => {
-            const url = URLS.QUESTION_5_DETAIL.replace(":id", item.woeid);
+            const url = URLS.QUESTION_5_DETAIL.replace(":code", item.woeid);
             return (
                 <li key={index}>
                     <Link to={url}>
@@ -61,6 +64,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     searchCity: searchCity,
+    clearList: clear
 }
 
 export default connect(
